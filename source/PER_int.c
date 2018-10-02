@@ -29,7 +29,7 @@ float ref_value_low = 0.05;
 float   cpu_load  = 0.0;
 long    interrupt_cycles = 0;
 
-// cunter of too lon interrupt function executions
+// counter of too long interrupt function executions
 int interrupt_overflow_counter = 0;
 
 /**************************************************************

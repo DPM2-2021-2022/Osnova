@@ -19,35 +19,35 @@ void PWM_init(void)
 {
 //EPWM Module 1
     // setup timer base 
-    EPwm1Regs.TBPRD = PWM_PERIOD/2;       //nastavljeno na 25us, PWM_PERIOD = 50us  
-    EPwm1Regs.TBCTL.bit.PHSDIR = 0;       // count up after sync
-    EPwm1Regs.TBCTL.bit.CLKDIV = 0;
-    EPwm1Regs.TBCTL.bit.HSPCLKDIV = 0;
-    EPwm1Regs.TBCTL.bit.SYNCOSEL = 1;     // sync out on zero
-    EPwm1Regs.TBCTL.bit.PRDLD = 0;        // shadowed period reload
-    EPwm1Regs.TBCTL.bit.PHSEN = 0;        // master timer does not sync  
-    EPwm1Regs.TBCTR = 1;
+    EPwm7Regs.TBPRD = PWM_PERIOD/2;       //nastavljeno na 25us, PWM_PERIOD = 50us
+    EPwm7Regs.TBCTL.bit.PHSDIR = 0;       // count up after sync
+    EPwm7Regs.TBCTL.bit.CLKDIV = 0;
+    EPwm7Regs.TBCTL.bit.HSPCLKDIV = 0;
+    EPwm7Regs.TBCTL.bit.SYNCOSEL = 1;     // sync out on zero
+    EPwm7Regs.TBCTL.bit.PRDLD = 0;        // shadowed period reload
+    EPwm7Regs.TBCTL.bit.PHSEN = 0;        // master timer does not sync
+    EPwm7Regs.TBCTR = 1;
 
         // debug mode behafiour
     #if PWM_DEBUG == 0
-    EPwm1Regs.TBCTL.bit.FREE_SOFT = 0;  // stop immediately
-    EPwm1Regs.TBCTL.bit.FREE_SOFT = 0;  // stop immediately
+    EPwm7Regs.TBCTL.bit.FREE_SOFT = 0;  // stop immediately
+    EPwm7Regs.TBCTL.bit.FREE_SOFT = 0;  // stop immediately
     #endif
     #if PWM_DEBUG == 1
-    EPwm1Regs.TBCTL.bit.FREE_SOFT = 1;  // stop when finished
-    EPwm1Regs.TBCTL.bit.FREE_SOFT = 1;  // stop when finished
+    EPwm7Regs.TBCTL.bit.FREE_SOFT = 1;  // stop when finished
+    EPwm7Regs.TBCTL.bit.FREE_SOFT = 1;  // stop when finished
     #endif
     #if PWM_DEBUG == 2
-    EPwm1Regs.TBCTL.bit.FREE_SOFT = 3;  // run free
-    EPwm1Regs.TBCTL.bit.FREE_SOFT = 3;  // run free
+    EPwm7Regs.TBCTL.bit.FREE_SOFT = 3;  // run free
+    EPwm7Regs.TBCTL.bit.FREE_SOFT = 3;  // run free
     #endif
     
     // Compare registers
-    EPwm1Regs.CMPA.half.CMPA = PWM_PERIOD/4;                 //50% duty cycle
+    EPwm7Regs.CMPA.half.CMPA = PWM_PERIOD/4;                 //50% duty cycle
 
     // Init Action Qualifier Output A Register 
-    EPwm1Regs.AQCTLA.bit.CAU = AQ_CLEAR;  // clear output on CMPA_UP
-    EPwm1Regs.AQCTLA.bit.CAD = AQ_SET;    // set output on CMPA_DOWN
+    EPwm7Regs.AQCTLA.bit.CAU = AQ_CLEAR;  // clear output on CMPA_UP
+    EPwm7Regs.AQCTLA.bit.CAD = AQ_SET;    // set output on CMPA_DOWN
 
     // Dead Time
     
@@ -55,15 +55,15 @@ void PWM_init(void)
 
     // Event trigger
     // Proženje ADC-ja
-    EPwm1Regs.ETSEL.bit.SOCASEL = 2;    //sproži prekinitev na periodo
-    EPwm1Regs.ETPS.bit.SOCAPRD = 1;     //ob vsakem prvem dogodku
-    EPwm1Regs.ETCLR.bit.SOCA = 1;       //clear possible flag
-    EPwm1Regs.ETSEL.bit.SOCAEN = 1;     //enable ADC Start Of conversion
+    EPwm7Regs.ETSEL.bit.SOCASEL = 2;    //sproži prekinitev na periodo
+    EPwm7Regs.ETPS.bit.SOCAPRD = 1;     //ob vsakem prvem dogodku
+    EPwm7Regs.ETCLR.bit.SOCA = 1;       //clear possible flag
+    EPwm7Regs.ETSEL.bit.SOCAEN = 1;     //enable ADC Start Of conversion
     // Proženje prekinitve 
-    EPwm1Regs.ETSEL.bit.INTSEL = 2;             //sproži prekinitev na periodo
-    EPwm1Regs.ETPS.bit.INTPRD = PWM_INT_PSCL;   //ob vsakem prvem dogodku
-    EPwm1Regs.ETCLR.bit.INT = 1;                //clear possible flag
-    EPwm1Regs.ETSEL.bit.INTEN = 1;              //enable interrupt
+    EPwm7Regs.ETSEL.bit.INTSEL = 2;             //sproži prekinitev na periodo
+    EPwm7Regs.ETPS.bit.INTPRD = PWM_INT_PSCL;   //ob vsakem prvem dogodku
+    EPwm7Regs.ETCLR.bit.INT = 1;                //clear possible flag
+    EPwm7Regs.ETSEL.bit.INTEN = 1;              //enable interrupt
 
 //EPWM Module 2
 
@@ -71,7 +71,7 @@ void PWM_init(void)
  
 // output pin setup
     EALLOW;
-    GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;   // GPIO0 pin is under ePWM control
+    GpioCtrlRegs.GPBMUX1.bit.GPIO40 = 1;   // GPIO40 pin is under ePWM control
     EDIS;                                 // Disable EALLOW
 
 }   //end of PWM_PWM_init
@@ -95,7 +95,7 @@ void PWM_update(float duty)
     compare = (int)((PWM_PERIOD/2) * duty);
 
     // vpisem vrednost v register
-    EPwm1Regs.CMPA.half.CMPA = compare;
+    EPwm7Regs.CMPA.half.CMPA = compare;
     
 
 }  //end of AP_PWM_update
@@ -127,7 +127,7 @@ void PWM_period(float perioda)
     }
     
     // nastavim TBPER
-    EPwm1Regs.TBPRD = celi_del;
+    EPwm7Regs.TBPRD = celi_del;
 }   //end of FB_period
 
 /**************************************************************
@@ -157,7 +157,7 @@ void PWM_frequency(float frekvenca)
     }
     
     // nastavim TBPER
-    EPwm1Regs.TBPRD = celi_del - 1;
+    EPwm7Regs.TBPRD = celi_del - 1;
 }   //end of FB_frequency
   
 /**************************************************************
@@ -169,7 +169,7 @@ void PWM_start(void)
 {
     EALLOW;
     SysCtrlRegs.PCLKCR0.bit.TBCLKSYNC = 0;
-    EPwm1Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;  //up-down-count mode
+    EPwm7Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;  //up-down-count mode
     SysCtrlRegs.PCLKCR0.bit.TBCLKSYNC = 1;
     EDIS;
     

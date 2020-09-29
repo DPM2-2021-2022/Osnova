@@ -57,13 +57,13 @@ void ADC_init(void)
     ADC_MODUL1.ETSEL.bit.SOCAEN = 1;             //enable ADC Start Of conversion
 
     // SOC0 config
-    AdcRegs.ADCSOC0CTL.bit.CHSEL = 0x0;     //set SOC0 channel select to ADCINA0
-    AdcRegs.ADCSOC0CTL.bit.TRIGSEL = 0x05;  //set SOC0 to start trigger on EPWM1A
+    AdcRegs.ADCSOC0CTL.bit.CHSEL = 0x8;     //set SOC0 channel select to ADCINB0
+    AdcRegs.ADCSOC0CTL.bit.TRIGSEL = 0x11;  //set SOC0 to start trigger on EPWM1A
     AdcRegs.ADCSOC0CTL.bit.ACQPS = 6;       //set SOC0 S/H Window to 7 ADC Clock Cycles,
 
     // SOC1 config
-    AdcRegs.ADCSOC1CTL.bit.CHSEL = 0x0;     //set SOC1 channel select to ADCINA0
-    AdcRegs.ADCSOC1CTL.bit.TRIGSEL = 0x05;  //set SOC1 to start trigger on EPWM1A
+    AdcRegs.ADCSOC1CTL.bit.CHSEL = 0x8;     //set SOC1 channel select to ADCINB0
+    AdcRegs.ADCSOC1CTL.bit.TRIGSEL = 0x11;  //set SOC1 to start trigger on EPWM1A
     AdcRegs.ADCSOC1CTL.bit.ACQPS = 6;       //set SOC1 S/H Window to 7 ADC Clock Cycles,
 
     //tu povemo naj se postavi interrupt flag, ko je zadnja pretvorba koncna

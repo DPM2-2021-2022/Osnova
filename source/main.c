@@ -19,34 +19,34 @@ void foo(int a, int b);
 void main(void)
 {
     // local variables
-	int x = 2;
-	int y = 7;
-	long product;
-	float counter;
-	int for_loop_passage_counter = 0;
+    int x = 2;
+    int y = 7;
+    long product;
+    float counter;
+    int for_loop_passage_counter = 0;
 
     // Setting the sum and difference for no reason
     sum = 5;
     difference = 6;
 
     // get sum and difference through function call
-	foo(x, y);
+    foo(x, y);
 
-	// multiply
-	product = x*y;
+    // multiply
+    product = x*y;
 
-	// example of problems with floats
-	for(counter = 0.1; counter <= 1; counter = counter + 0.1)
-	{
-		for_loop_passage_counter = for_loop_passage_counter + 1;
-	}
+    // example of problems with floats
+    for(counter = 0.1; counter <= 1; counter = counter + 0.1)
+    {
+        for_loop_passage_counter = for_loop_passage_counter + 1;
+    }
 
-	// another example of problems with floats
-	for_loop_passage_counter = 0;
-	for(counter = 100000001.0; counter <= 100000010.0; counter = counter + 1)
-	{
-		for_loop_passage_counter = for_loop_passage_counter + 1;
-	}
+    // another example of problems with floats
+    for_loop_passage_counter = 0;
+    for(counter = 100000001.0; counter <= 100000010.0; counter = counter + 1)
+    {
+        for_loop_passage_counter = for_loop_passage_counter + 1;
+    }
     
     // demonstration of volatile keyword
     while(x == 2)

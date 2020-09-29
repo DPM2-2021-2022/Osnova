@@ -41,7 +41,7 @@ void interrupt PER_int(void)
     // local variables
     
     // acknowledge interrupt within PWM module
-    EPwm1Regs.ETCLR.bit.INT = 1;
+    EPwm7Regs.ETCLR.bit.INT = 1;
     // acknowledge interrupt within PIE module
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
     
@@ -86,7 +86,7 @@ void interrupt PER_int(void)
     /* Test if new interrupt is already waiting.
      * If so, then something is seriously wrong.
      */
-    if (EPwm1Regs.ETFLG.bit.INT == TRUE)
+    if (EPwm7Regs.ETFLG.bit.INT == TRUE)
     {
         // count number of interrupt overflow events
         interrupt_overflow_counter = interrupt_overflow_counter + 1;
@@ -126,21 +126,21 @@ void PER_int_setup(void)
     dlog.iptr1 = &voltage;                 // CH1 stores measured voltage
 
     // setup interrupt trigger
-    EPwm1Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
-    EPwm1Regs.ETPS.bit.INTPRD = ET_1ST;
-    EPwm1Regs.ETCLR.bit.INT = 1;
-    EPwm1Regs.ETSEL.bit.INTEN = 1;
+    EPwm7Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
+    EPwm7Regs.ETPS.bit.INTPRD = ET_1ST;
+    EPwm7Regs.ETCLR.bit.INT = 1;
+    EPwm7Regs.ETSEL.bit.INTEN = 1;
 
     // register the interrupt function
     EALLOW;
-    PieVectTable.EPWM1_INT = &PER_int;
+    PieVectTable.EPWM7_INT = &PER_int;
     EDIS;
 
     // acknowledge any spurious interrupts
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
 
     // enable interrupt within PIE
-    PieCtrlRegs.PIEIER3.bit.INTx1 = 1;
+    PieCtrlRegs.PIEIER3.bit.INTx7 = 1;
 
     // enable interrupt within CPU
     IER |= M_INT3;

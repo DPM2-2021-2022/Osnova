@@ -10,7 +10,7 @@
 #include    "DSP28x_Project.h"
 
 // doloci kateri PWM modul prozi ADC
-#define     ADC_MODUL1      EPwm1Regs
+#define     ADC_MODUL1      EPwm7Regs
 
 // kje se nahajajo rezultati
 #define     ADC_RESULT0     (AdcResult.ADCRESULT0)

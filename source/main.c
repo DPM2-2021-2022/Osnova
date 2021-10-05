@@ -17,7 +17,7 @@ void foo(int a, int b);
 * main function only executes initialization code
 **************************************************************/
 void main(void)
-{/*
+{
     // local variables
     int x = 2;
     int y = 7;
@@ -55,7 +55,7 @@ void main(void)
         // DO NOTHING
         asm(" NOP");
     }
-*/
+
     // initialize system clock
     InitSysCtrl();
     

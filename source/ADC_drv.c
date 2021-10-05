@@ -51,27 +51,27 @@ void ADC_init(void)
     
     // ADC trigger setup
     ADC_MODUL1.CMPB = 0x0000;
-    ADC_MODUL1.ETSEL.bit.SOCASEL = ET_CTR_ZERO;   //sproži prekinitev na periodo
-    ADC_MODUL1.ETPS.bit.SOCAPRD = ET_1ST;        //ob vsakem prvem dogodku
-    ADC_MODUL1.ETCLR.bit.SOCA = 1;               //clear possible flag
-    ADC_MODUL1.ETSEL.bit.SOCAEN = 1;             //enable ADC Start Of conversion
+    ADC_MODUL1.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
+    ADC_MODUL1.ETPS.bit.SOCAPRD = ET_1ST;
+    ADC_MODUL1.ETCLR.bit.SOCA = 1;
+    ADC_MODUL1.ETSEL.bit.SOCAEN = 1;
 
-    // SOC0 config
-    AdcRegs.ADCSOC0CTL.bit.CHSEL = 0x8;     //set SOC0 channel select to ADCINB0
-    AdcRegs.ADCSOC0CTL.bit.TRIGSEL = 0x11;  //set SOC0 to start trigger on EPWM1A
-    AdcRegs.ADCSOC0CTL.bit.ACQPS = 6;       //set SOC0 S/H Window to 7 ADC Clock Cycles,
+    // SOC0 config ADCINA1 EPWM7A
+    AdcRegs.ADCSOC0CTL.bit.CHSEL = 0x1;
+    AdcRegs.ADCSOC0CTL.bit.TRIGSEL = 0x11;
+    AdcRegs.ADCSOC0CTL.bit.ACQPS = 6;
 
-    // SOC1 config
-    AdcRegs.ADCSOC1CTL.bit.CHSEL = 0x8;     //set SOC1 channel select to ADCINB0
-    AdcRegs.ADCSOC1CTL.bit.TRIGSEL = 0x11;  //set SOC1 to start trigger on EPWM1A
-    AdcRegs.ADCSOC1CTL.bit.ACQPS = 6;       //set SOC1 S/H Window to 7 ADC Clock Cycles,
+    // SOC1 config ADCINA1 EPWM7A
+    AdcRegs.ADCSOC1CTL.bit.CHSEL = 0x1;
+    AdcRegs.ADCSOC1CTL.bit.TRIGSEL = 0x11;
+    AdcRegs.ADCSOC1CTL.bit.ACQPS = 6;
 
     //tu povemo naj se postavi interrupt flag, ko je zadnja pretvorba koncna
     //interrupt je se naprej onemogocen, flag ki se bo postavil pa nam bo
     //sluzil za detektiranje konca niza pretvorb
-    AdcRegs.INTSEL1N2.bit.INT1SEL = 0x00;   //interrupt1 naj prozi signal EOC1, ker je to soc, ki se zadnji izvede
-    AdcRegs.INTSEL1N2.bit.INT1E = 1;        //prekinitev ob interrpt dogodku je omogocena (da se lahko postavi flag)
-    AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;   //pobrise se flag
+    AdcRegs.INTSEL1N2.bit.INT1SEL = 0x00;
+    AdcRegs.INTSEL1N2.bit.INT1E = 1;
+    AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
 
     EDIS;
 

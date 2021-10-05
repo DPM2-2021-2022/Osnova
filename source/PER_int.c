@@ -74,6 +74,8 @@ void interrupt PER_int(void)
         ref_value = ref_value_high;
     }
 
+    // PID code comes here
+
 
     duty = ref_value;
 
@@ -124,6 +126,11 @@ void PER_int_setup(void)
 
     dlog.trig = &ref_counter;               // use reference generator counter as a trigger
     dlog.iptr1 = &voltage;                 // CH1 stores measured voltage
+    dlog.iptr2 = &duty;                 // CH1 stores measured voltage
+    dlog.iptr3 = &ref_counter;                 // CH1 stores measured voltage
+
+    // clear the log buffer
+    DLOG_GEN_clear();
 
     // setup interrupt trigger
     EPwm7Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;

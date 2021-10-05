@@ -65,11 +65,8 @@ void PWM_init(void)
     EPwm7Regs.ETCLR.bit.INT = 1;                //clear possible flag
     EPwm7Regs.ETSEL.bit.INTEN = 1;              //enable interrupt
 
-//EPWM Module 2
 
-//EPWM Module 3
- 
-// output pin setup
+    // output pin setup
     EALLOW;
     GpioCtrlRegs.GPBMUX1.bit.GPIO40 = 1;   // GPIO40 pin is under ePWM control
     EDIS;                                 // Disable EALLOW

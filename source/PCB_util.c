@@ -36,7 +36,7 @@ void PCB_LED_toggle(void)
 **************************************************************/
 void PCB_load_on(void)
 {
-	GpioDataRegs.GPADAT.bit.GPIO1 = 1;
+	GpioDataRegs.GPBDAT.bit.GPIO58 = 1;
 }
 
 /**************************************************************
@@ -44,7 +44,7 @@ void PCB_load_on(void)
 **************************************************************/
 void PCB_load_off(void)
 {
-	GpioDataRegs.GPADAT.bit.GPIO1 = 0;
+	GpioDataRegs.GPBDAT.bit.GPIO58 = 0;
 }
 
 /**************************************************************
@@ -61,9 +61,9 @@ void PCB_init(void)
     GpioDataRegs.GPBDAT.bit.GPIO34 = 0;
 
     // BREME
-    GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO1 = 1;
-    GpioDataRegs.GPADAT.bit.GPIO1 = 0;
+    GpioCtrlRegs.GPBMUX2.bit.GPIO58 = 0;
+    GpioCtrlRegs.GPBDIR.bit.GPIO58 = 1;
+    GpioDataRegs.GPBDAT.bit.GPIO58 = 0;
 
     EDIS;
 

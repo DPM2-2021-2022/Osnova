@@ -124,7 +124,7 @@ extern "C" {
 #include "F2806x_EPwm_defines.h"             // Macros used for PWM examples.
 #include "F2806x_I2c_defines.h"              // Macros used for I2C examples.
 #include "F2806x_Dma_defines.h"              // Macros used for DMA examples.
-#include "F2806x_Cla_Defines.h"              // Macros used for CLA examples.
+#include "F2806x_Cla_defines.h"              // Macros used for CLA examples.
 
 
 #define   PARTNO_F28062PNT		0x64

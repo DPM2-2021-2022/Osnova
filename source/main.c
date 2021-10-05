@@ -17,13 +17,14 @@ void foo(int a, int b);
 * main function only executes initialization code
 **************************************************************/
 void main(void)
-{
+{/*
     // local variables
     int x = 2;
     int y = 7;
     long product;
     float counter;
     int for_loop_passage_counter = 0;
+    float a, b;
 
     // Setting the sum and difference for no reason
     sum = 5;
@@ -54,7 +55,7 @@ void main(void)
         // DO NOTHING
         asm(" NOP");
     }
-
+*/
     // initialize system clock
     InitSysCtrl();
     

@@ -215,3 +215,15 @@ void DLOG_GEN_update(void)
         }
     }
 }
+
+void DLOG_GEN_clear(void)
+{
+    for (dlog.write_ptr = 0; dlog.write_ptr < DLOG_GEN_SIZE; dlog.write_ptr++)
+    {
+        DLOG_b_1[dlog.write_ptr] = 0;
+        DLOG_b_2[dlog.write_ptr] = 0;
+        DLOG_b_3[dlog.write_ptr] = 0;
+        DLOG_b_4[dlog.write_ptr] = 0;
+    }
+    dlog.write_ptr = 0;
+}

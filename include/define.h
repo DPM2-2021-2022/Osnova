@@ -10,7 +10,7 @@
 #include    "IQmathLib.h"
 
 // PWM frequency
-#define     SWITCH_FREQ     40000
+#define     SWITCH_FREQ     100000
 
 // ratio between PWM and sampling frequency
 #define   	SAMP_PRESCALE   1

@@ -16,6 +16,7 @@
 
 // function prototype
 void DLOG_GEN_update(void);
+void DLOG_GEN_clear(void);
 
 enum MODE { Auto, Normal, Single, Stop};
 
